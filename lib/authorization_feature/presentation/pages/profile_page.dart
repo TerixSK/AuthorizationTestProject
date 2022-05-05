@@ -3,6 +3,7 @@ import 'package:authorization_test_project/common/app_colors.dart';
 import 'package:authorization_test_project/common/app_styles.dart';
 import 'package:authorization_test_project/common/app_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:spring/spring.dart';
 
 class ProfilePage extends StatelessWidget {
   final UserEntity user;
@@ -27,32 +28,33 @@ class ProfilePage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   color: AppColors.purple),
             ),
-            Row(
+            const SizedBox(height: 24.0),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Icon(
-                  Icons.person,
-                  size: 200.0,
-                  color: AppColors.lightPurple,
+                Spring.bubbleButton(
+                  animDuration: const Duration(milliseconds: 1500),
+                  child: Image.asset(
+                    'assets/images/profile.jpeg',
+                    width: 300,
+                  ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _makeUserInfoText('Email:', AppColors.purple),
-                    _makeUserInfoText(user.login, AppColors.lightPurple),
-                    const SizedBox(
-                      height: 16.0,
-                    ),
-                    _makeUserInfoText('Password:', AppColors.purple),
-                    _makeUserInfoText(user.password, AppColors.lightPurple),
-                  ],
+                const SizedBox(
+                  height: 16.0,
                 ),
+                _makeUserInfoText('Email: ' + user.login, AppColors.purple),
+                const SizedBox(
+                  height: 8.0,
+                ),
+                _makeUserInfoText(
+                    'Password: ' + user.password, AppColors.purple),
               ],
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton.large(
-        child: const Text('Log out', style: AppStyles.text),
+        child: const Text('Log out', style: AppStyles.whiteText),
         backgroundColor: AppColors.purple,
         onPressed: () => Navigator.pop(context),
       ),
