@@ -6,6 +6,7 @@ import 'package:authorization_test_project/authorization_feature/data/exception/
 import 'package:authorization_test_project/authorization_feature/data/models/user_model.dart';
 import 'package:authorization_test_project/authorization_feature/domain/entities/user_entity.dart';
 import 'package:authorization_test_project/authorization_feature/domain/repositories/user_reposithory.dart';
+import 'package:authorization_test_project/core/error/failure.dart';
 
 class UserReposithoryImpl implements UserReposithory {
   final UserLocalDataSource localDataSource;
@@ -14,6 +15,12 @@ class UserReposithoryImpl implements UserReposithory {
 
   @override
   Future<void> save(UserEntity user) async {
+    final result = localDataSource.contains(user.login);
+
+    if (result) {
+      throw const Failure('This user is already registered.');
+    }
+
     try {
       final UserModel model = _mapEntityToModel(user);
       await serverDelay();
@@ -25,6 +32,12 @@ class UserReposithoryImpl implements UserReposithory {
 
   @override
   Future<void> update(UserEntity user) async {
+    final result = localDataSource.contains(user.login);
+
+    if (!result) {
+      throw const Failure('This user is not registered.');
+    }
+
     try {
       final UserModel model = _mapEntityToModel(user);
       await serverDelay();
@@ -63,5 +76,7 @@ class UserReposithoryImpl implements UserReposithory {
     } else {
       log('unidentified error has occurred');
     }
+
+    throw const Failure('Server Error');
   }
 }
