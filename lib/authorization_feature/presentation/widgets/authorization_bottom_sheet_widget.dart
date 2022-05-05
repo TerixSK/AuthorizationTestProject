@@ -43,7 +43,7 @@ class AuthorizationBottomSheetWidget {
                     child: Text(
                       text,
                       textAlign: TextAlign.center,
-                      style: AppStyles.text,
+                      style: AppStyles.whiteText,
                     ),
                   ),
                   // UserAuthorizationFormWidget(mode: mode)

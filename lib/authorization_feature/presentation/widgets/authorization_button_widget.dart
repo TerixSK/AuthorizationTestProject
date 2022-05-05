@@ -26,7 +26,7 @@ class AuthorizationButtonWidget extends StatelessWidget {
               children: [
                 Text(
                   text,
-                  style: AppStyles.text,
+                  style: AppStyles.whiteText,
                 ),
                 const SizedBox(width: 4.0),
                 const Icon(Icons.arrow_forward_rounded, size: 24.0),
