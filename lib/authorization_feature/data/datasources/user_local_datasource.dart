@@ -40,10 +40,6 @@ class UserLocalDataSource {
   Future<void> update(UserModel model) async {
     validateBox();
 
-    if (box.isEmpty || !_contains(model.login)) {
-      throw OperationException();
-    }
-
     try {
       await box.delete(model.login);
       await box.put(model.login, model.password);
@@ -55,7 +51,7 @@ class UserLocalDataSource {
   bool isExisting(UserModel model) {
     validateBox();
 
-    if (box.isEmpty || !_contains(model.login)) {
+    if (box.isEmpty || !contains(model.login)) {
       return false;
     }
 
@@ -70,7 +66,7 @@ class UserLocalDataSource {
     return false;
   }
 
-  bool _contains(String login) {
+  bool contains(String login) {
     validateBox();
 
     if (box.isNotEmpty) {
