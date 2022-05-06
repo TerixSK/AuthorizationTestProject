@@ -65,7 +65,12 @@ class ChagePasswordPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.update),
           backgroundColor: AppColors.purple,
-          onPressed: () => context.read<UserBloc>().add(ChangePasswordEvent())),
+          onPressed: () {
+            final formIsValid = formKey.currentState?.validate() ?? false;
+            if (formIsValid) {
+              context.read<UserBloc>().add(ChangePasswordEvent());
+            }
+          }),
     );
   }
 }

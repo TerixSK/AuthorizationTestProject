@@ -65,8 +65,12 @@ class NewAccountPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.create),
           backgroundColor: AppColors.purple,
-          onPressed: () =>
-              context.read<UserBloc>().add(CreateNewAccountEvent())),
+          onPressed: () {
+            final formIsValid = formKey.currentState?.validate() ?? false;
+            if (formIsValid) {
+              context.read<UserBloc>().add(CreateNewAccountEvent());
+            }
+          }),
     );
   }
 }
