@@ -55,7 +55,7 @@ class LogInPage extends StatelessWidget {
                       AuthorizationButtonWidget(
                         text: 'Change password',
                         onPressed: () =>
-                            _navigateTo(context, ChagePasswordPage()),
+                            _navigateTo(context, ChangePasswordPage()),
                       ),
                       const SizedBox(height: 16.0),
                     ],

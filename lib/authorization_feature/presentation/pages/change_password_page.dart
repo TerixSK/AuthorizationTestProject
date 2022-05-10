@@ -11,8 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/src/provider.dart';
 
-class ChagePasswordPage extends StatelessWidget {
-  ChagePasswordPage({Key? key}) : super(key: key);
+class ChangePasswordPage extends StatelessWidget {
+  ChangePasswordPage({Key? key}) : super(key: key);
 
   final formKey = GlobalKey<FormState>();
 
